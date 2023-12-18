@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
-    primaryColor: Colors.blue,
-    hintColor: Colors.green,
-    fontFamily: 'Roboto', // Örneğin, 'Roboto' fontunu kullanabilirsiniz
-    // Diğer temel stil özelliklerini burada tanımlayabilirsiniz
-  );
-
-  // Eğer koyu tema kullanmak istiyorsanız:
-  static ThemeData darkTheme = ThemeData.dark().copyWith(
-    primaryColor: Colors.blue,
-    hintColor: Colors.green,
-    // Diğer temel stil özelliklerini burada tanımlayabilirsiniz
-  );
+  static ThemeData darkTheme() {
+    return ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: Colors.black,
+      hintColor: Colors.grey[800],
+      scaffoldBackgroundColor: Colors.black,
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        bodyMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      appBarTheme: const AppBarTheme(
+        color: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      cardTheme: CardTheme(
+        color: Colors.grey[900],
+      ),
+    );
+  }
 }
