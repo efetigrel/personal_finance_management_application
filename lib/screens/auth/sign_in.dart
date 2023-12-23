@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:personal_finance_management_application/utils/colors.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInState extends State<SignIn> {
   late String email, password;
   final formkey = GlobalKey<FormState>();
-  final firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -32,24 +30,19 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 logo(),
-                Column(
-                  children: [
-                    sizedBox10(),
-                    emailTextField(),
-                    sizedBox10(),
-                    passwordTextField(),
-                    sizedBox10(),
-                    forgotPassword(),
-                    sizedBox10(),
-                    loginButton(),
-                    sizedBox20(),
-                    line(),
-                    sizedBox20(),
-                    googleSignInButton(),
-                    sizedBox10(),
-                    appleSignInButton(),
-                  ],
-                ),
+                emailTextField(),
+                sizedBox10(),
+                passwordTextField(),
+                sizedBox10(),
+                forgotPassword(),
+                sizedBox10(),
+                signInButton(),
+                sizedBox20(),
+                line(),
+                sizedBox20(),
+                googleSignInButton(),
+                sizedBox10(),
+                appleSignInButton(),
                 sizedBox20(),
                 signUpTextAndButton()
               ],
@@ -114,9 +107,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  ElevatedButton loginButton() {
+  ElevatedButton signInButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () => Navigator.pushNamed(context, "/homeScreen"),
       style: ButtonStyle(
         backgroundColor: const MaterialStatePropertyAll(primaryColor1),
         minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
@@ -127,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       child: const Text(
-        'Login',
+        'Sign in',
         style: TextStyle(color: whiteColor),
       ),
     );
@@ -186,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
         width: 24.0,
       ),
       label: const Text(
-        'Sign in with Google',
+        'Continue with Google',
         style: TextStyle(color: whiteColor),
       ),
     );
@@ -216,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
         width: 24.0,
       ),
       label: const Text(
-        ' Sign in with Apple',
+        ' Continue with Apple',
         style: TextStyle(color: Colors.white),
       ),
     );
@@ -228,9 +221,9 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         const Text("Don't have an account,"),
         TextButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, "/signUp"),
           child: const Text(
-            'Sign Up',
+            'Sign up',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
