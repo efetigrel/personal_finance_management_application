@@ -8,8 +8,8 @@ class AppTheme {
       hintColor: Colors.grey[800],
       scaffoldBackgroundColor: Colors.black,
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        bodyMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        bodyLarge: TextStyle(color: Colors.white),
+        bodyMedium: TextStyle(color: Colors.white),
       ),
       appBarTheme: const AppBarTheme(
         color: Colors.black,

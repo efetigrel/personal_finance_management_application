@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_finance_management_application/firebase_options.dart';
 import 'package:personal_finance_management_application/screens/auth/login_page.dart';
+import 'package:personal_finance_management_application/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Personal Finance Management Application',
-      theme: ThemeData.dark(),
+      theme: AppTheme.darkTheme(),
       home: const LoginPage(),
     );
   }

@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton(
       onPressed: () {},
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(primaryColor1),
+        backgroundColor: const MaterialStatePropertyAll(primaryColor1),
         minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
@@ -126,7 +126,10 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      child: const Text("Login"),
+      child: const Text(
+        'Login',
+        style: TextStyle(color: whiteColor),
+      ),
     );
   }
 
@@ -163,6 +166,7 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton.icon(
       onPressed: () {},
       style: ButtonStyle(
+        backgroundColor: const MaterialStatePropertyAll(blackColor),
         minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
         side: MaterialStateProperty.all(
           const BorderSide(
@@ -192,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton.icon(
       onPressed: () {},
       style: ButtonStyle(
+        backgroundColor: const MaterialStatePropertyAll(blackColor),
         minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
         side: MaterialStateProperty.all(
           const BorderSide(
@@ -224,7 +229,10 @@ class _LoginPageState extends State<LoginPage> {
         const Text("Don't have an account,"),
         TextButton(
           onPressed: () {},
-          child: const Text("Sign Up"),
+          child: const Text(
+            'Sign Up',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );
