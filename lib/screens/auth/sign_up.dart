@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:personal_finance_management_application/utils/button_styles.dart';
 import 'package:personal_finance_management_application/utils/colors.dart';
+import 'package:personal_finance_management_application/widgets/sign_in_and_sign_up.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -50,13 +52,6 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget logo() {
-    return const Image(
-      height: 250,
-      image: AssetImage('lib/assets/images/logo_white.png'),
     );
   }
 
@@ -120,117 +115,13 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  TextButton forgotPassword() {
-    return TextButton(
-      onPressed: () {},
-      child: const Text('forgot password ?'),
-    );
-  }
-
   ElevatedButton signUpButton() {
     return ElevatedButton(
       onPressed: () => Navigator.pushNamed(context, "/signIn"),
-      style: ButtonStyle(
-        backgroundColor: const MaterialStatePropertyAll(primaryColor1),
-        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
-        shape: MaterialStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0), // Köşe yuvarlatma
-          ),
-        ),
-      ),
+      style: CustomButtonStyles.elevatedButtonStyle,
       child: const Text(
         'Sign Up',
         style: TextStyle(color: whiteColor),
-      ),
-    );
-  }
-
-  Row line() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Container(
-            height: 0.5,
-            color: greyColor,
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            'OR',
-            style: TextStyle(color: greyColor),
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Container(
-            height: 0.5,
-            color: greyColor,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget googleSignInButton() {
-    return ElevatedButton.icon(
-      onPressed: () {},
-      style: ButtonStyle(
-        backgroundColor: const MaterialStatePropertyAll(blackColor),
-        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
-        side: MaterialStateProperty.all(
-          const BorderSide(
-            color: primaryColor1,
-            width: 1.5,
-          ),
-        ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-        ),
-      ),
-      icon: Image.asset(
-        'lib/assets/images/google_icon.png',
-        height: 24.0,
-        width: 24.0,
-      ),
-      label: const Text(
-        'Continue with Google',
-        style: TextStyle(color: whiteColor),
-      ),
-    );
-  }
-
-  Widget appleSignInButton() {
-    return ElevatedButton.icon(
-      onPressed: () {},
-      style: ButtonStyle(
-        backgroundColor: const MaterialStatePropertyAll(blackColor),
-        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
-        side: MaterialStateProperty.all(
-          const BorderSide(
-            color: primaryColor1,
-            width: 1.5,
-          ),
-        ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-        ),
-      ),
-      icon: Image.asset(
-        'lib/assets/images/apple_icon.png',
-        height: 24.0,
-        width: 24.0,
-      ),
-      label: const Text(
-        ' Continue with Apple',
-        style: TextStyle(color: Colors.white),
       ),
     );
   }
@@ -249,13 +140,5 @@ class _SignUpState extends State<SignUp> {
         ),
       ],
     );
-  }
-
-  SizedBox sizedBox10() {
-    return const SizedBox(height: 10);
-  }
-
-  SizedBox sizedBox20() {
-    return const SizedBox(height: 20);
   }
 }
