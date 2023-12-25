@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:personal_finance_management_application/screens/auth/sign_in.dart';
+import 'package:personal_finance_management_application/service/auth_service.dart';
 import 'package:personal_finance_management_application/utils/button_styles.dart';
 import 'package:personal_finance_management_application/utils/colors.dart';
 import 'package:personal_finance_management_application/widgets/sign_in_and_sign_up.dart';
@@ -13,6 +16,8 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   late String email, password, fullname;
   final formkey = GlobalKey<FormState>();
+  final firebaseAuth = FirebaseAuth.instance;
+  final authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +122,7 @@ class _SignUpState extends State<SignUp> {
 
   ElevatedButton signUpButton() {
     return ElevatedButton(
-      onPressed: () => Navigator.pushNamed(context, "/signIn"),
+      onPressed: signUp,
       style: CustomButtonStyles.elevatedButtonStyle,
       child: const Text(
         'Sign Up',
@@ -140,5 +145,33 @@ class _SignUpState extends State<SignUp> {
         ),
       ],
     );
+  }
+
+  void signUp() async {
+    if (formkey.currentState!.validate()) {
+      formkey.currentState!.save();
+      final result = await authService.signUp(email, fullname, password);
+
+      if (result == "success") {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const SignIn()),
+          (route) => false,
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(result ?? "An error occurred."),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please fill in all required fields."),
+          duration: Duration(seconds: 3),
+        ),
+      );
+    }
   }
 }

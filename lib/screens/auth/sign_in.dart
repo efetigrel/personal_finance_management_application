@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:personal_finance_management_application/screens/home_screen.dart';
+import 'package:personal_finance_management_application/service/auth_service.dart';
 import 'package:personal_finance_management_application/utils/button_styles.dart';
 import 'package:personal_finance_management_application/utils/colors.dart';
 import 'package:personal_finance_management_application/widgets/sign_in_and_sign_up.dart';
@@ -13,6 +16,9 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   late String email, password;
   final formkey = GlobalKey<FormState>();
+  final firebaseAuth = FirebaseAuth.instance;
+
+  final authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +110,7 @@ class _SignInState extends State<SignIn> {
 
   ElevatedButton signInButton() {
     return ElevatedButton(
-      onPressed: () => Navigator.pushNamed(context, "/homeScreen"),
+      onPressed: signIn,
       style: CustomButtonStyles.elevatedButtonStyle,
       child: const Text(
         'Sign in',
@@ -127,5 +133,33 @@ class _SignInState extends State<SignIn> {
         ),
       ],
     );
+  }
+
+  void signIn() async {
+    if (formkey.currentState!.validate()) {
+      formkey.currentState!.save();
+      final result = await authService.signIn(email, password);
+      if (result == "success") {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false);
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Hata"),
+              content: Text(result!),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Geri Don"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 }
