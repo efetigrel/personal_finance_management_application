@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_finance_management_application/firebase_options.dart';
 import 'package:personal_finance_management_application/screens/auth/sign_in.dart';
 import 'package:personal_finance_management_application/screens/auth/sign_up.dart';
+import 'package:personal_finance_management_application/screens/assets_liabilities_screen.dart';
 import 'package:personal_finance_management_application/screens/home_screen.dart';
 import 'package:personal_finance_management_application/theme.dart';
 
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/signIn": (context) => const SignIn(),
         "/signUp": (context) => const SignUp(),
-        "/homeScreen": (context) => const HomeScreen()
+        "/homeScreen": (context) => const HomeScreen(),
+        "/assetsLiabilities": (context) => const AssetsLiabilities()
       },
       theme: AppTheme.darkTheme(),
       home: const SignIn(),

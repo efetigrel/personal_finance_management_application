@@ -103,7 +103,7 @@ class _SignInState extends State<SignIn> {
 
   TextButton forgotPassword() {
     return TextButton(
-      onPressed: () {},
+      onPressed: forgotPassword,
       child: const Text('forgot password ?'),
     );
   }
@@ -111,6 +111,7 @@ class _SignInState extends State<SignIn> {
   ElevatedButton signInButton() {
     return ElevatedButton(
       onPressed: signIn,
+      // () => Navigator.pushNamed(context, '/homeScreen'),
       style: CustomButtonStyles.elevatedButtonStyle,
       child: const Text(
         'Sign in',
@@ -141,7 +142,7 @@ class _SignInState extends State<SignIn> {
       final result = await authService.signIn(email, password);
       if (result == "success") {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
             (route) => false);
       } else {
         showDialog(

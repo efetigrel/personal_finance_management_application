@@ -15,6 +15,7 @@ class AuthService {
         res = "Mail Already Registered.";
       }
     }
+    return null;
   }
 
   Future<String?> signIn(String email, String password) async {
