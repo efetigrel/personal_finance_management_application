@@ -28,3 +28,15 @@ class CustomButtonStyles {
     ),
   );
 }
+
+class AssetsLiabilitiesBottomButtonsStyle {
+  static ButtonStyle elevatedButtonStyle(Color buttonColor) {
+    return ElevatedButton.styleFrom(
+      backgroundColor: buttonColor,
+      foregroundColor: whiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+    );
+  }
+}
